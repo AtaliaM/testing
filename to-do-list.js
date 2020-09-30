@@ -32,7 +32,7 @@ function addTask(inputs) {
     }
 
     myToDos.push(newTask);
-    return newTask;
+    return myToDos[myToDos.length-1];
 }
 
 function addTaskInput() {
@@ -57,6 +57,9 @@ function deleteTask(input) {
         }
         
     }
+    if (deleted===undefined) {
+        throw new Error("task isn't found!");
+    }
     return deleted;
 
 }
@@ -65,7 +68,7 @@ function deleteTaskInput() {
     const taskToDelete = input.question("Enter task name to delete: ");
     return taskToDelete;
 }
-// deleteTask(deleteTaskInput());
+deleteTask(deleteTaskInput());
 // console.log(myToDos);
 
 function markAsDone(input) {
@@ -104,7 +107,7 @@ function doneOrUndoneInput() {
 // console.log(myToDos);
 
 function listByStatus() {
-    myToDos.sort((a, b) => (a.status < b.status) ? 1 : -1)
+   myToDos.sort((a, b) => (a.status < b.status) ? 1 : -1);
 }
 
 // listByStatus();

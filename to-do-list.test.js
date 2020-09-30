@@ -15,9 +15,10 @@ describe('to-do-list', ()=> {
     // });
     describe('addTask', ()=> {
         it('should create new object and add it to to-do array', ()=> {
-            const newTask = toDoList.addTask(addTaskInput());
+            const input = addTaskInput()
+            const newTask = toDoList.addTask(input);
 
-            const expected = toDoList.myToDos[toDoList.myToDos.length-1];
+            const expected = {task: input[0], status: input[1]};
 
             expect(newTask).toEqual(expected);
         })
@@ -31,7 +32,18 @@ describe('to-do-list', ()=> {
 
             expect(result).toEqual(input);
         })
-    })
+
+        it("should throw error when task isn't found", () => {
+            const input = toDoList.deleteTaskInput().toLowerCase();
+
+            // const result = toDoList.deleteTask(input);
+
+            expect(() => {
+                toDoList.deleteTask(input);
+            }).toThrow("task isn't found!");
+        });
+    });
+    
 
     describe('markAsDone', ()=> {
         it('should mark a specific task status as done', ()=> {
@@ -51,4 +63,13 @@ describe('to-do-list', ()=> {
             expect(result).toEqual(input);
         })
     })
+
+    // describe('listByStatus', ()=> {
+    //     it('should return the list sorted by status, "done" at the end', ()=> {
+            
+
+    //     })
+    // })
+
+
 })
